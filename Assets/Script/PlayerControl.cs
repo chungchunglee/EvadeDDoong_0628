@@ -9,7 +9,11 @@ public class PlayerControl : MonoBehaviour
     SpriteRenderer playerspriteRenderer;
     Animator playeranimator;
     [SerializeField]
-    float speed = 0.05f;
+    float speed = 0.5f;
+    
+    [SerializeField]
+    private int unBeatTime = 2;
+
     [SerializeField]
     private int maxHp = 3;
     private int nowHP;
@@ -64,20 +68,21 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log("Hit--Critical");
             nowHP --;
-            isUnBeatTime = true;
-            StartCoroutine("UnbeatTime");
             if(nowHP == 0)
             {
                 HPBar.fillAmount = 0;
                 Die();
                 GameManager.instance.OnPlayerDead();
+                return;
             }
+            isUnBeatTime = true;
+            StartCoroutine("UnbeatTime");
         }
     }
     IEnumerator UnbeatTime()
     {
         int countTime = 0;
-        while (countTime < 10)
+        while (countTime < (unBeatTime/0.2))
         {
             if (countTime % 2 == 0)
             {
