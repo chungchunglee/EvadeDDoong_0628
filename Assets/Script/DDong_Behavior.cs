@@ -35,8 +35,8 @@ public class DDong_Behavior : MonoBehaviour
             Debug.Log(other + other.tag);
             // 점수 증가
             GameManager.instance.AddScore(1);
-            Instantiate(explosion,transform.position,Quaternion.identity);
             // 에니메이션
+            Instantiate(explosion,transform.position,Quaternion.identity);
 
             //Active
             gameObject.SetActive(false);

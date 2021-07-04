@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public bool isGameover = false;
     public Text scoreText;
     public GameObject gameOverUI;
+
+
     [SerializeField]
     private int score = 0;
 
