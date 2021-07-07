@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool isGameover = false;
     public Text scoreText;
+    public Text recordText;
     public GameObject gameOverUI;
 
 
@@ -49,5 +50,13 @@ public class GameManager : MonoBehaviour
     {
         isGameover = true;
         gameOverUI.SetActive(true);
+
+        float bestScore = PlayerPrefs.GetFloat("BestTime");
+        if(score>bestScore)
+        {
+            bestScore = score;
+            PlayerPrefs.SetFloat("BestTime", bestScore);
+        }
+        recordText.text = "Best Score : " + (int)bestScore;
     }
 }
